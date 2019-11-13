@@ -1,23 +1,28 @@
+//Variables
 const qwerty = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
-const btn_reset = document.getElementById('btn_reset');
 let missed = 0;
-const startButton = document.querySelector('a.btn_reset');
+const overlay = document.getElementById('overlay');
 
-//Event Listener
-startButton.addEventListener('click', () => {
-    if(event.target.className === 'btn_reset') {
-        startButton.style.display = 'none';
-    } else {
-        resetGame();
-    }
+//Event Listener for Start Button
+overlay.addEventListener('click', () => {
+    overlay.style.display = 'none'
 });
 
 //Phrase Arrays
 const phrases = [
-    'Purple',
-    'Pink',
-    'Yellow',
-    'Blue',
-    'Orange'
+    'Mumford and Sons',
+    'The Black Keys',
+    'The Lumineers',
+    'Alabama Shakes',
+    'The Strokes'
 ];
+
+//Get a random Phrase function
+function getRandomPhraseAsArray(arr) {
+    const random = arr[Math.floor(Math.random() * arr.length)]; 
+    return random.split('');
+};
+
+//Call random phrase
+const phraseArray = getRandomPhraseAsArray(phrases);
