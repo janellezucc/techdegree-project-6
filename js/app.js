@@ -26,3 +26,4 @@ function getRandomPhraseAsArray(arr) {
 
 //Call random phrase
 const phraseArray = getRandomPhraseAsArray(phrases);
+
