@@ -27,8 +27,6 @@ function getRandomPhraseAsArray(arr) {
 //Call random phrase
 const phraseArray = getRandomPhraseAsArray(phrases);
 
-//You’ll need to write the addPhraseToDisplay function so that it can take any array 
-//of letters and add it to the display. To do that, the function will need to take 
 function addPhraseToDisplay(arr) {
     for (i = 0; i < arr.length; i++) {
         let listItem = document.createElement("li");
@@ -44,13 +42,16 @@ function addPhraseToDisplay(arr) {
 
 addPhraseToDisplay(phraseArray);
 
+
 //checkLetter function
 const checkLetter = button => {
     let match = null;
-     const letters = document.querySelectorAll('.letters');
+    const letters = document.querySelectorAll('.letter');
+
      for (let i = 0; i < letters.length; i += 1) {
-         if () {
-             
-         }
+         if (button === letter.textContent.toLowerCase()) {
+            letter.classList.add('show');
+         } 
      }
- }
+     return match;
+ };
