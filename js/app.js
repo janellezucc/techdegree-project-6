@@ -1,6 +1,7 @@
 //Variables
 const qwerty = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
+const keyboard = document.querySelector('#qwerty');
 let missed = 0;
 const overlay = document.getElementById('overlay');
 
@@ -46,12 +47,27 @@ addPhraseToDisplay(phraseArray);
 //checkLetter function
 const checkLetter = button => {
     let match = null;
-    const letters = document.querySelectorAll('.letter');
 
-     for (let i = 0; i < letters.length; i += 1) {
-         if (button === letter.textContent.toLowerCase()) {
+    letters.forEach(letter => {
+        if(button === letter.textContent.toLowerCase()) {
             letter.classList.add('show');
-         } 
-     }
-     return match;
- };
+            match = true;
+        }
+    });
+
+
+//Pass the button to the checkLetter function, 
+//and store the letter returned inside of a variable called letterFound. 
+//At this point, you can open the index.html file, 
+//click any of the letters on the keyboard, and start to see the letters appear in the phrase.
+
+//Event listener
+keyboard.addEventHandler('click', event =>{
+    if(event.target.tagName === 'BUTTON'){
+        event.target.className = 'chosen';
+        event.target.disabled === true;
+
+        const letterFound = checkLetter(event.target.textContent.toLowerCase());
+        const misses = document.querySelector('misses');
+    }
+});
