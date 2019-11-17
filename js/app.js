@@ -30,10 +30,14 @@ const phraseArray = getRandomPhraseAsArray(phrases);
 function adddPhraseToDisplay(arr) {
     for (i = 0; i < arr.length; i++) {
         let listItem = document.createElement("li");
-        const checkLetter = listItem('li')
     }
 };
 
 adddPhraseToDisplay(phraseArray);
 
 //checkLetter function
+const checkLetter = button => {
+​   let match = null;
+    const letters = document.getElementById('li');
+    if ()
+}
