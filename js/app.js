@@ -6,9 +6,12 @@ let missed = 0;
 const overlay = document.getElementById('overlay');
 
 
+
 //Event Listener for Start Button
-overlay.addEventListener('click', () => {
-    overlay.style.display = 'none'
+overlay.addEventListener('click', (e) => {
+    if(event.target.tagName === 'A') {
+        overlay.style.display = 'none'
+    }
 });
 
 //Phrase Arrays
@@ -87,14 +90,11 @@ const checkWin = () => {
         overlay.style.display = 'flex';
         const overlayTitleElement = document.getElementById('title');
         overlayTitleElement.innerHTML = 'You Won!';
-
-
-
         let resetBtn = document.createElement('a');
         resetBtn.className = "btn_reset";
         overlay.appendChild(resetBtn);
         resetBtn.textContent = "Play Again";
-        
+
         resetBtn.addEventListener('click', () =>{
             window.location.reload(true);
         });
@@ -112,4 +112,5 @@ const checkWin = () => {
             window.location.reload(true);
         });
     }
+
 };
