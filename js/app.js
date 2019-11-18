@@ -67,7 +67,7 @@ const checkLetter = button => {
 keyboard.addEventListener('click', event =>{
     if (event.target.tagName === "BUTTON"){
         event.target.className = 'chosen';
-        event.target.disabled === true;
+        event.target.disabled = true;
 
         const letterFound = checkLetter(event.target.textContent.toLowerCase());
         if(!letterFound){
@@ -84,15 +84,15 @@ keyboard.addEventListener('click', event =>{
 const checkWin = () => {
     const lettersCount = document.querySelectorAll('.letter').length;
     let showCount = document.querySelectorAll('.show').length;
-
+    const resetBtn = document.querySelector('.btn__reset');
     if (lettersCount === showCount) {
         overlay.className = 'win';
         overlay.style.display = 'flex';
         const overlayTitleElement = document.getElementById('title');
         overlayTitleElement.innerHTML = 'You Won!';
-        let resetBtn = document.createElement('a');
+        /*let resetBtn = document.createElement('a');
         resetBtn.className = "btn_reset";
-        overlay.appendChild(resetBtn);
+        overlay.appendChild(resetBtn);*/
         resetBtn.textContent = "Play Again";
 
         resetBtn.addEventListener('click', () =>{
@@ -103,9 +103,10 @@ const checkWin = () => {
         overlay.style.display = 'flex';
         const overlayTitleElement = document.getElementById('title');
         overlayTitleElement.innerHTML = 'You Lose!';
-        let resetBtn = document.createElement('a');
+        const resetBtn = document.querySelector('.btn__reset');
+        /*let resetBtn = document.createElement('a');
         resetBtn.className = "btn_reset";
-        overlay.appendChild(resetBtn);
+        overlay.appendChild(resetBtn);*/
         resetBtn.textContent = "Play Again";
 
         resetBtn.addEventListener('click', () =>{
@@ -114,3 +115,5 @@ const checkWin = () => {
     }
 
 };
+
+
