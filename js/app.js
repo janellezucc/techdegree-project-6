@@ -46,28 +46,33 @@ addPhraseToDisplay(phraseArray);
 
 //checkLetter function
 const checkLetter = button => {
-    let match = null;
+    let matched = null;
+    const letters = document.querySelectorAll('.letter');
 
     letters.forEach(letter => {
         if(button === letter.textContent.toLowerCase()) {
             letter.classList.add('show');
-            match = true;
+            matched = true;
         }
     });
-
-
-//Pass the button to the checkLetter function, 
-//and store the letter returned inside of a variable called letterFound. 
-//At this point, you can open the index.html file, 
-//click any of the letters on the keyboard, and start to see the letters appear in the phrase.
+        return match;
+};
 
 //Event listener
 keyboard.addEventHandler('click', event =>{
-    if(event.target.tagName === 'BUTTON'){
+    if(event.target.tagName === "BUTTON"){
         event.target.className = 'chosen';
         event.target.disabled === true;
 
-        const letterFound = checkLetter(event.target.textContent.toLowerCase());
-        const misses = document.querySelector('misses');
+        const match = checkLetter(event.target.textContent.toLowerCase());
+        if (!match) {
+            missed++;
+
+            const img = document.querySelectorAll("img");
+            img[missed - 1].src="images/lostHeart.png";
+        }
     }
+    checkWin();
 });
+
+
