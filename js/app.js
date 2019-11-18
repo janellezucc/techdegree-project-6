@@ -5,6 +5,7 @@ const keyboard = document.querySelector('#qwerty');
 let missed = 0;
 const overlay = document.getElementById('overlay');
 
+
 //Event Listener for Start Button
 overlay.addEventListener('click', () => {
     overlay.style.display = 'none'
@@ -29,8 +30,9 @@ function getRandomPhraseAsArray(arr) {
 const phraseArray = getRandomPhraseAsArray(phrases);
 
 function addPhraseToDisplay(arr) {
-    for (i = 0; i < arr.length; i++) {
+    for(i = 0; i < arr.length; i++) {
         let listItem = document.createElement("li");
+        listItem.textContent = arr[i];
         phrase.appendChild(listItem);
 
         if(listItem.textContent !== ' ') {
@@ -55,17 +57,17 @@ const checkLetter = button => {
             matched = true;
         }
     });
-        return match;
+        return matched;
 };
 
 //Event listener
-keyboard.addEventHandler('click', event =>{
-    if(event.target.tagName === "BUTTON"){
+keyboard.addEventListener('click', event =>{
+    if (event.target.tagName === "BUTTON"){
         event.target.className = 'chosen';
         event.target.disabled === true;
 
-        const match = checkLetter(event.target.textContent.toLowerCase());
-        if (!match) {
+        const letterFound = checkLetter(event.target.textContent.toLowerCase());
+        if(!letterFound){
             missed++;
 
             const img = document.querySelectorAll("img");
@@ -75,4 +77,39 @@ keyboard.addEventHandler('click', event =>{
     checkWin();
 });
 
+//Create a checkWin function.
+const checkWin = () => {
+    const lettersCount = document.querySelectorAll('.letter').length;
+    let showCount = document.querySelectorAll('.show').length;
 
+    if (lettersCount === showCount) {
+        overlay.className = 'win';
+        overlay.style.display = 'flex';
+        const overlayTitleElement = document.getElementById('title');
+        overlayTitleElement.innerHTML = 'You Won!';
+
+
+
+        let resetBtn = document.createElement('a');
+        resetBtn.className = "btn_reset";
+        overlay.appendChild(resetBtn);
+        resetBtn.textContent = "Play Again";
+        
+        resetBtn.addEventListener('click', () =>{
+            window.location.reload(true);
+        });
+    } else if (missed >= 5) {
+        overlay.className = 'lose';
+        overlay.style.display = 'flex';
+        const overlayTitleElement = document.getElementById('title');
+        overlayTitleElement.innerHTML = 'You Lose!';
+        let resetBtn = document.createElement('a');
+        resetBtn.className = "btn_reset";
+        overlay.appendChild(resetBtn);
+        resetBtn.textContent = "Play Again";
+
+        resetBtn.addEventListener('click', () =>{
+            window.location.reload(true);
+        });
+    }
+};
